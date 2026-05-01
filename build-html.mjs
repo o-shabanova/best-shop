@@ -51,11 +51,11 @@ const distDir = 'dist';
 
 const htmlFiles = [
   'index.html',
-  'pages/catalog.html',
-  'pages/about.html',
-  'pages/contact.html',
-  'pages/cart.html',
-  'pages/product-details-template.html'
+  'html/catalog.html',
+  'html/about.html',
+  'html/contact.html',
+  'html/cart.html',
+  'html/product-details-template.html'
 ];
 
 function ensureDir(dir) {

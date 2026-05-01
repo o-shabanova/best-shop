@@ -12,7 +12,7 @@
     "watch:css": "sass --watch src/scss/main.scss:dist/css/main.css --style=expanded",
     "build:html": "node build-html.mjs",
     "build": "npm run clean && npm run build:css && npm run build:html",
-    "clean": "rimraf dist"
+    "clean": "rm -rf dist"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,10 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "posthtml": "^0.16.7",
+    "posthtml-include": "^2.0.1",
+    "sass": "^1.99.0",
+    "serve": "^14.2.6",
     "typescript": "^6.0.2"
   }
 }
