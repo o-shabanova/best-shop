@@ -1,0 +1,54 @@
+@use '../abstracts/variables' as *;
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 40px;
+  padding: 9px 24px;
+  border: none;
+  font-family: $font-tertiary;
+  font-size: $font-size-medium;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-small;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &--primary {
+    background-color: $color-primary;
+    color: $color-white;
+
+    &:hover {
+      background-color: darken($color-primary, 10%);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  &--secondary {
+    border: 2px solid $color-primary;
+    background-color: transparent;
+    color: $color-primary;
+
+    &:hover {
+      background-color: $color-primary;
+      color: $color-white;
+    }
+  }
+
+  &--large {
+    min-height: 60px;
+    padding: 18px 48px;
+    font-size: $font-size-large;
+  }
+
+  &--medium {
+    min-height: 48px;
+    padding: 12px 32px;
+  }
+}
+  

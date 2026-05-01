@@ -1,0 +1,26 @@
+@use 'sass:math';
+
+/* fills viewport height safely */
+@mixin fill-viewport($subtract: 0) {
+    min-block-size: calc(100vh - #{$subtract});   
+
+    @supports (height: 100svh) {
+      min-block-size: calc(100svh - #{$subtract});
+    }
+
+    @supports (height: 100dvh) {
+      min-block-size: calc(100dvh - #{$subtract});
+    }
+  }
+
+/* px → rem (за бази 16px) */
+@function rem($px, $base: 16) {
+  @return math.div($px, $base) * 1rem;
+}
+
+/* px → em */
+@function em($px, $context: 16) {
+  @return math.div($px, $context) * 1em;
+}
+
+  

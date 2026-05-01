@@ -1,0 +1,197 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+
+.contact-form,
+ .review-form {
+    &__field {
+        min-height: rem(70, 16); 
+        
+        &--textarea {
+            min-height: rem(140, 16); 
+        }
+    }
+
+    &__input {
+        &--error {
+            border-color: #e74c3c !important;
+            box-shadow: 0 0 0 2px rgb(231 76 60 / 10%);
+        }
+    }
+    
+    &__error {
+        display: none;
+        margin-top: rem(4, 16);
+        font-family: $font-primary;
+        font-size: rem(14, 16);
+        font-weight: $font-weight-regular;
+        line-height: 1.4;
+        color: #e74c3c;
+    }
+    
+    &__message {
+        margin-bottom: rem(20, 16);
+        padding: rem(12, 16) rem(16, 16);
+        border-radius: rem(4, 16);
+        font-family: $font-primary;
+        font-size: rem(14, 16);
+        font-weight: $font-weight-medium;
+        line-height: 1.4;
+        transition: opacity 0.3s ease;
+        
+        &--success {
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        &--error {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    }
+    
+    &__submit {
+        &--loading {
+            position: relative;
+            opacity: 0.7;
+            cursor: not-allowed;
+            
+            &::after {
+                position: absolute;
+                top: 50%;
+                right: rem(10, 16);
+                width: rem(16, 16);
+                height: rem(16, 16);
+                border: 2px solid transparent;
+                border-radius: 50%;
+                transform: translateY(-50%);
+                animation: spin 1s linear infinite;
+                border-top: 2px solid currentcolor;
+                content: '';
+            }
+        }
+    }
+}
+
+.review-form {
+    display: flex;
+    flex-direction: column;
+    
+    &__title {
+        margin-bottom: rem(20);
+        font-family: $font-primary;
+        font-size: rem(18);
+        font-weight: $font-weight-bold;
+        line-height: 1.5;
+        color: $color-black;
+    }
+
+    &__note {
+        margin-bottom: rem(30);
+        font-family: $font-primary;
+        font-size: rem(13);
+        font-weight: $font-weight-regular;
+        line-height: 1.5;
+        color: $color-black;
+
+        span {
+            color: $color-primary;
+        }
+    }
+
+    &__rating-group {
+        display: flex;
+        align-items: center;
+        gap: rem(15);
+        margin-bottom: rem(30);
+
+        .review-form__rate-label {
+            font-family: $font-primary;
+            font-size: rem(13);
+            font-weight: $font-weight-bold;
+            line-height: 1.5;
+            color: $color-black;
+        } 
+    }
+    
+    &__stars {
+        display: flex;
+        gap: rem(5);
+
+        svg {
+            width: 16px;
+            height: 15px;
+        }
+    }
+
+    &__textarea, &__name, &__email {
+        width: 100%;
+        border: 2px solid rgba($color-primary, 0.5);
+        font-size: rem(16);
+        resize: vertical;
+
+        &::placeholder {
+            font-family: $font-primary;
+            font-size: rem(13);
+            font-weight: $font-weight-regular;
+            line-height: 1.5;
+            color: $color-gray;
+        }
+
+        &:focus {
+            border: 2px solid $color-primary;
+            outline: none;
+        }
+    }
+
+    &__textarea {
+        min-height: rem(170);
+        margin-bottom: rem(25);
+        padding: rem(15);
+    }
+
+    &__user-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: rem(20);
+        margin-bottom: rem(35);
+
+        .review-form__name, .review-form__email {
+            padding: 10px 15px;
+        }
+    }
+  
+    &__remember {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: rem(30);
+        font-family: $font-primary;
+        font-size: rem(13);
+        font-weight: $font-weight-regular;
+        line-height: 1.5;
+        color: $color-gray;
+    }
+  
+    &__submit {
+        align-self: flex-start;
+        padding: 12px 22px;
+        font-family: $font-primary;
+        font-size: rem(12);
+        font-weight: $font-weight-bold;
+        line-height: 1.5;
+        color: $color-white;
+        
+        &:hover {
+            background-color: darken($color-primary, 10%);
+        }
+    }
+}
+
+@keyframes spin {
+    0% { transform: translateY(-50%) rotate(0deg); }
+    100% { transform: translateY(-50%) rotate(360deg); }
+}

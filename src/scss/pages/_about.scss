@@ -1,0 +1,306 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.about-hero {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  height: rem(554);
+
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: url('../assets/about-hero-bg.png') center/cover no-repeat;
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0 0 0 / 40%);
+  }
+
+  &__content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    color: $color-white;
+  }
+
+  &__title {
+    margin: 0 0 rem(40);
+    font-family: $font-primary;
+    font-size: $font-size-hero;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-medium;
+    color: $color-white;
+  }
+
+  &__text {
+    p {
+      margin: 0;
+      font-family: $font-primary;
+      font-size: $font-size-medium;
+      font-weight: $font-weight-regular;
+      line-height: $line-height-medium;
+      color: #E9E9ED;
+      
+      &:not(:last-child) {
+        margin-bottom: rem(8);
+      }
+    }
+  }
+}
+
+.about-benefits {
+    padding: rem(80) 0;
+    background-color: $color-white;
+  
+    &__grid {
+      display: grid;
+      gap: rem(40);
+      grid-template-columns: repeat(4, 1fr);
+      max-width: rem(1200);
+      margin: 0 auto;
+    }
+  }
+  
+  .about-benefit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: rem(40) rem(20);
+    text-align: center;
+  
+    &__icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: rem(62);
+      height: rem(62);
+      margin-bottom: rem(20);
+      border-radius: 50%;
+      background-color: $color-primary;
+    }
+  
+    &__img {
+      width: rem(45);
+      height: rem(45);
+      object-fit: contain;
+    }
+  
+    &__content {
+      max-width: rem(220);
+    }
+  
+    &__title {
+      margin: 0 0 rem(16);
+      font-family: $font-primary;
+      font-size: $font-size-xxl;
+      font-weight: $font-weight-bold;
+      line-height: $line-height-medium;
+      color: $color-black;
+    }
+  
+    &__description {
+      margin: 0;
+      font-family: $font-primary;
+      font-size: $font-size-medium;
+      font-weight: $font-weight-regular;
+      line-height: $line-height-medium;
+      color: $color-gray;
+    }
+  }
+
+.about-new-arrivals {
+  padding: rem(80) 0;
+  
+  &__content {
+    display: grid;
+    align-items: center;
+    gap: rem(80);
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &__text {
+    max-width: rem(647);
+  }
+
+  &__title {
+    margin: 0 0 rem(40);
+    font-family: $font-primary;
+    font-size: $font-size-title;
+    font-weight: $font-weight-black;
+    line-height: $line-height-medium;
+    color: $color-black;
+  }
+
+  &__description {
+    margin-bottom: rem(40);
+    
+    p {
+      margin: 0 0 rem(28);
+      font-family: $font-primary;
+      font-size: $font-size-medium;
+      font-weight: $font-weight-regular;
+      line-height: $line-height-medium;
+      color: $color-gray;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__btn {
+    min-height: rem(61);
+    padding: rem(18) rem(36);
+    font-size: $font-size-large;
+    font-weight: $font-weight-bold;
+  }
+
+  &__image {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__img {
+    width: 100%;
+    max-width: rem(615);
+    height: auto;
+    object-fit: cover;
+  }
+}
+
+.about-team {
+  padding: rem(80) 0;
+  background-color: $color-white;
+
+  &__line {
+    width: rem(440);
+    height: rem(2);
+    margin: 0 auto rem(40);
+    background-color: $color-primary;
+  }
+
+  &__title {
+    margin: 0 0 rem(12);
+    font-family: $font-primary;
+    font-size: $font-size-title;
+    font-weight: $font-weight-black;
+    line-height: $line-height-medium;
+    text-align: center;
+    color: $color-black;
+  }
+
+  &__grid {
+    display: grid;
+    gap: rem(80);
+    grid-template-columns: repeat(3, 1fr);
+    max-width: rem(1230);
+    margin: 0 auto;
+  }
+
+  &__card {
+    text-align: center;
+  }
+
+  &__image {
+    width: 100%;
+    max-width: rem(410);
+    height: rem(340);
+    margin-bottom: rem(30);
+    object-fit: cover;
+  }
+
+  &__name {
+    margin: 0 0 rem(8);
+    font-family: $font-primary;
+    font-size: rem(22);
+    font-weight: $font-weight-bold;
+    line-height: $line-height-medium;
+    text-transform: uppercase;
+    color: $color-black;
+  }
+
+  &__position {
+    margin: 0;
+    font-family: $font-primary;
+    font-size: $font-size-medium;
+    font-weight: $font-weight-regular;
+    line-height: $line-height-medium;
+    color: $color-gray;
+  }
+}
+
+
+@media (width <= 1200px) {
+  .about-benefits__grid {
+    gap: rem(30);
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-team__grid {
+    gap: rem(60);
+  }
+}
+
+@media (width <= 768px) {
+  .about-hero {
+    height: rem(400);
+    
+    &__title {
+      font-size: rem(40);
+    }
+  }
+
+  .about-new-arrivals {
+    &__content {
+      gap: rem(40);
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    &__text {
+      max-width: 100%;
+    }
+  }
+
+  .about-team {
+    &__grid {
+      gap: rem(40);
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .about-benefits__grid {
+    gap: rem(30);
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (width <= 480px) {
+  .about-hero {
+    height: rem(300);
+    
+    &__title {
+      font-size: rem(32);
+    }
+  }
+
+  .about-new-arrivals,
+  .about-team,
+  .about-benefits {
+    padding: rem(40) 0;
+  }
+
+}

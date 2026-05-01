@@ -1,0 +1,4 @@
+@use '../abstracts/variables' as *;
+
+body { font-family: $font-secondary; }
+h1, h2, h3 { font-family: $font-primary; }
