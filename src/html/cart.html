@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cart - Best Shop</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+    <include src="./components/header.html"></include>
+    
+    <main class="cart-main">
+                <section class="cart-hero">
+                    <div class="cart-hero__bg">
+                        <img src="/assets/cart-hero-bg.png" alt="Cart background" class="cart-hero__image">
+                        <div class="cart-hero__overlay"></div>
+                    </div>
+                    <div class="container">
+                        <h1 class="cart-hero__title">My Cart</h1>
+                    </div>
+                </section>
+
+                <div class="cart-content container">
+                <div class="cart-table">
+                    <div class="cart-table__header">
+                        <div class="cart-table__header-item">IMAGE</div>
+                        <div class="cart-table__header-item">PRODUCT NAME</div>
+                        <div class="cart-table__header-item">PRICE</div>
+                        <div class="cart-table__header-item">QUANTITY</div>
+                        <div class="cart-table__header-item">TOTAL</div>
+                        <div class="cart-table__header-item">DELETE</div>
+                    </div>
+
+                    <div class="cart-items">
+                    </div>
+                    <div class="cart-actions">
+                        <button class="btn btn--secondary cart-actions__btn">CONTINUE SHOPPING</button>
+                        <button class="btn btn--secondary cart-actions__btn">CLEAR SHOPPING CART</button>
+                    </div>
+                </div>
+
+                <div class="cart-checkout">
+                    <div class="cart-checkout__summary">
+                        <div class="cart-checkout__row">
+                            <span class="cart-checkout__label">Sub Total</span>
+                            <span class="cart-checkout__value" id="cart-subtotal">$0</span>
+                        </div>
+                        <div class="cart-checkout__divider"></div>
+                        <div class="cart-checkout__row">
+                            <span class="cart-checkout__label discount">Discount</span>
+                            <span class="cart-checkout__value" id="cart-discount">$0</span>
+                        </div>
+                        <div class="cart-checkout__divider"></div>
+                        <div class="cart-checkout__row">
+                            <span class="cart-checkout__label">Shipping</span>
+                            <span class="cart-checkout__value" id="cart-shipping">$0</span>
+                        </div>
+                        <div class="cart-checkout__divider"></div>
+                        <div class="cart-checkout__row cart-checkout__row--total">
+                            <span class="cart-checkout__label total">Total</span>
+                            <span class="cart-checkout__value cart-checkout__value--total" id="cart-total">$0</span>
+                        </div>
+                    </div>
+                    <button class="btn btn--primary cart-checkout__btn">CHECKOUT</button>
+                </div>
+                </div>
+    </main>
+    <include src="./components/footer.html"></include>
+    
+    <script type="module" src="/js/main.js"></script>
+
+</body>
+</html>

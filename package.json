@@ -5,9 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "echo \"Dummy build script required for Autocode Compile\"",
-    "ts-compile": "npx tsc"
-
+    "ts-compile": "npx tsc",
+    "start": "serve src -l 5173",
+    "start:dist": "serve dist -l 5173",
+    "build:css": "sass src/scss/main.scss dist/css/main.css --style=expanded --no-source-map",
+    "watch:css": "sass --watch src/scss/main.scss:dist/css/main.css --style=expanded",
+    "build:html": "node build-html.mjs",
+    "build": "npm run clean && npm run build:css && npm run build:html",
+    "clean": "rimraf dist"
   },
   "repository": {
     "type": "git",

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Best Shop</title>
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+    
+    <include src="./components/header.html"></include>
+    <main class="main">
+        <section class="contact-hero" aria-labelledby="contact-hero-title">
+            <div class="contact-hero__bg">
+                <img src="../assets/contact-hero-image.png" alt="Contact background" class="contact-hero__image">
+                <div class="contact-hero__overlay"></div>
+            </div>
+            <div class="container contact-hero__content">
+                <h1 id="contact-hero-title" class="contact-hero__title">Contact Us</h1>
+                <div class="contact-hero__text">
+                    <p>Duis vestibulum elit vel neque pharetra vulputate.</p>
+                    <p>Duis rutrum non risus in imperdiet.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-content container">
+                <div class="contact-info">
+                     <div class="contact-info__card">
+                         <div class="contact-info__icon">
+                             <div class="contact-info__icon-bg">
+                                 <img src="../assets/contact-location-icon.svg" alt="Location icon" class="contact-info__icon-img">
+                             </div>
+                         </div>
+                        <h3 class="contact-info__title">Our Location</h3>
+                        <div class="contact-info__details">
+                            <p>1234 NW Bobcat Lane, St.</p>
+                            <p>Robert, MO 65584-5678</p>
+                        </div>
+                    </div>
+                     <div class="contact-info__card">
+                         <div class="contact-info__icon">
+                             <div class="contact-info__icon-bg">
+                                 <img src="../assets/contact-time-icon.svg" alt="Time icon" class="contact-info__icon-img">
+                             </div>
+                         </div>
+                        <h3 class="contact-info__title">Operating Time</h3>
+                        <div class="contact-info__details">
+                            <p>Monday - Friday: 9am - 6 pm</p>
+                            <p>Weekends: 10:30 am - 6pm</p>
+                        </div>
+                    </div>
+                     <div class="contact-info__card">
+                         <div class="contact-info__icon">
+                             <div class="contact-info__icon-bg">
+                                 <img src="../assets/contact-email-icon.svg" alt="Email icon" class="contact-info__icon-img">
+                             </div>
+                         </div>
+                        <h3 class="contact-info__title">Our Email</h3>
+                        <div class="contact-info__details">
+                            <p>best@shop.com</p>
+                            <p>info@bestshop.com</p>
+                        </div>
+                    </div>
+                     <div class="contact-info__card">
+                         <div class="contact-info__icon">
+                             <div class="contact-info__icon-bg">
+                                 <img src="../assets/contact-phone-icon.svg" alt="Phone icon" class="contact-info__icon-img">
+                             </div>
+                         </div>
+                        <h3 class="contact-info__title">Call Us</h3>
+                        <div class="contact-info__details">
+                            <p>(268)142-8413</p>
+                            <p>(760)265-2917</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <div class="contact-form__image">
+                        <img src="../assets/contact-form-bg.png" alt="Contact form background" class="contact-form__bg">
+                    </div>
+                    <div class="contact-form__content">
+                        <h2 class="contact-form__title">Your Feedback Is Much Appreciated!</h2>
+                        <p class="contact-form__subtitle">We will contact you when you complete the following form!</p>
+                        
+                        <form class="contact-form__form">
+                            <div class="contact-form__field">
+                                <label for="name" class="contact-form__label">Your Name <span class="contact-form__label-required">*</span></label>
+                                <input type="text" id="name" name="name" class="contact-form__input" required="">
+                                <span class="contact-form__error contact-form__error--name" aria-live="polite"></span>
+                            </div>
+                            
+                            <div class="contact-form__field">
+                                <label for="email" class="contact-form__label">Your Email Address <span class="contact-form__label-required">*</span></label>
+                                <input type="email" id="email" name="email" class="contact-form__input" required="">
+                                <span class="contact-form__error contact-form__error--email" aria-live="polite"></span>
+                            </div>
+                            
+                            <div class="contact-form__field">
+                                <label for="topic" class="contact-form__label">Topic <span class="contact-form__label-required">*</span></label>
+                                <input type="text" id="topic" name="topic" class="contact-form__input" required="">
+                                <span class="contact-form__error contact-form__error--topic" aria-live="polite"></span>
+                            </div>
+                            
+                            <div class="contact-form__field contact-form__field--textarea">
+                                <label for="message" class="contact-form__label">Your Message <span class="contact-form__label-required">*</span></label>
+                                <textarea id="message" name="message" class="contact-form__textarea" rows="5" required=""></textarea>
+                                <span class="contact-form__error contact-form__error--message" aria-live="polite"></span>
+                            </div>
+                            
+                            <button type="submit" class="btn btn--primary contact-form__submit">SEND</button>
+                        </form>
+                    </div>
+                </div>
+        </section>
+    </main>
+    <include src="./components/footer.html"></include>
+    <script type="module" src="/js/main.js"></script>
+
+</body>
+</html>

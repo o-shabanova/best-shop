@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog - Best Shop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+    <include src="./components/header.html"></include>
+    <main class="container">
+      <section class="catalog-filters">
+        <form id="catalog-filters-form" class="catalog-filters__form">
+          <div class="catalog-filters__row">
+            <div class="catalog-filters__group">
+              <label for="size" class="catalog-filters__label">Size</label>
+              <div class="catalog-filters__select" data-target="size">
+                <div class="catalog-filters__select-display">Choose option</div>
+                <ul class="catalog-filters__select-options">
+                  <li data-value="S">S</li>
+                  <li data-value="M">M</li>
+                  <li data-value="L">L</li>
+                  <li data-value="XL">XL</li>
+                  <li data-value="S-L">S-L</li>
+                  <li data-value="S, M, XL">S, M, XL</li>
+                </ul>
+              </div>
+              <select id="size" name="size" class="catalog-filters__select-hidden" hidden="">
+                <option value="">Choose option</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="S-L">S-L</option>
+                <option value="S, M, XL">S, M, XL</option>
+              </select>
+            </div>
+            <div class="catalog-filters__group">
+              <label for="color" class="catalog-filters__label">Color</label>
+              <div class="catalog-filters__select" data-target="color">
+                <div class="catalog-filters__select-display">Choose option</div>
+                <ul class="catalog-filters__select-options">
+                  <li data-value="red">red</li>
+                  <li data-value="blue">blue</li>
+                  <li data-value="green">green</li>
+                  <li data-value="black">black</li>
+                  <li data-value="grey">grey</li>
+                  <li data-value="yellow">yellow</li>
+                  <li data-value="pink">pink</li>
+                </ul>
+              </div>
+              <select id="color" name="color" class="catalog-filters__select-hidden" hidden="">
+                <option value="">Choose option</option>
+                <option value="red">red</option>
+                <option value="blue">blue</option>
+                <option value="green">green</option>
+                <option value="black">black</option>
+                <option value="grey">grey</option>
+                <option value="yellow">yellow</option>
+                <option value="pink">pink</option>
+              </select>
+            </div>
+            <div class="catalog-filters__group">
+              <label for="category" class="catalog-filters__label">Category</label>
+              <div class="catalog-filters__select" data-target="category">
+                <div class="catalog-filters__select-display">Choose option</div>
+                <ul class="catalog-filters__select-options">
+                  <li data-value="carry-ons">carry-ons</li>
+                  <li data-value="suitcases">suitcases</li>
+                  <li data-value="luggage sets">luggage sets</li>
+                  <li data-value="kids' luggage">kids' luggage</li>
+                </ul>
+              </div>
+              <select id="category" name="category" class="catalog-filters__select-hidden" hidden="">
+                <option value="">Choose option</option>
+                <option value="carry-ons">carry-ons</option>
+                <option value="suitcases">suitcases</option>
+                <option value="luggage sets">luggage sets</option>
+                <option value="kids' luggage">kids' luggage</option>
+              </select>
+            </div>
+            <div class="catalog-filters__group catalog-filters__group--sales">
+              <label for="sales" class="catalog-filters__label">Sales</label>
+              <input type="checkbox" name="sales" id="sales" class="catalog-filters__checkbox">
+            </div>
+          </div>
+          <div class="catalog-filters__actions">
+            <button type="reset" class="catalog-filters__button catalog-filters__button--clear">CLEAR FILTERS</button>
+            <button type="button" class="catalog-filters__button catalog-filters__button--hide">HIDE FILTERS</button>
+          </div>
+        </form>
+      </section>
+        <section class="catalog-controls">
+            <p class="catalog-controls__results" id="productCount">Showing <span>0</span>-<span>0</span> of <span>0</span> Results</p>
+            <div class="catalog-controls__panel">
+                <div class="catalog-controls__sort">
+                    <label for="sort" class="visually-hidden">Sort products</label>
+                    <select name="sort" id="sort" class="catalog-controls__sort-field">
+                        <option value="default">Default Sorting</option>
+                        <option value="price-asc">by price (lowest to highest)</option>
+                        <option value="price-desc">by price (highest to lowest)</option>
+                        <option value="popularity">by popularity</option>
+                        <option value="rating">by rating</option>
+                    </select>
+                </div>
+                <form class="catalog-controls__search" action="#">
+                    <label for="catalog-search" class="visually-hidden">Search models</label>
+                    <input type="search" name="search" id="catalog-search" placeholder="Search Models" class="catalog-controls__search-input" />
+                    <button type="submit" class="catalog-controls__search-button">
+                        <svg class="catalog-controls__search-icon" width="17" height="17" viewBox="0 0 17 17" fill="none">
+                            <path d="M12.5 11H11.71L11.43 10.73C12.41 9.59 13 8.11 13 6.5C13 2.91 10.09 0 6.5 0C2.91 0 0 2.91 0 6.5C0 10.09 2.91 13 6.5 13C8.11 13 9.59 12.41 10.73 11.43L11 11.71V12.5L16 17.49L17.49 16L12.5 11ZM6.5 11C4.01 11 2 8.99 2 6.5C2 4.01 4.01 2 6.5 2C8.99 2 11 4.01 11 6.5C11 8.99 8.99 11 6.5 11Z" fill="currentColor"></path>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </section>
+          <div class="catalog-layout">
+            <section class="catalog-products">
+              <div id="catalog-products" class="catalog-products__grid">
+                
+              </div>
+              <div class="catalog-pagination">
+                <button class="catalog-pagination__button catalog-pagination__button--prev" style="display: none;">PREVIOUS</button>
+                <div class="catalog-pagination__numbers" id="pagination-numbers">
+                  
+                </div>
+                <button class="catalog-pagination__button catalog-pagination__button--next">NEXT</button>
+              </div>
+          </section>
+          <aside class="catalog-sidebar">
+            <section class="catalog-top-sets">
+              <h2 class="catalog-top-sets__title">Top Best Sets</h2>
+              
+            </section>
+          </aside>
+          </div>  
+    </main> 
+    <div id="product-not-found-popup" class="catalog-popup" style="display: none;">
+        <div class="catalog-popup__content">
+            <div class="catalog-popup__icon">
+                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="32" cy="32" r="30" stroke="#E9E9ED" stroke-width="2"></circle>
+                    <path d="M32 20V36M32 44H32.01" stroke="#E9E9ED" stroke-width="2" stroke-linecap="round"></path>
+                </svg>
+            </div>
+            <h3 class="catalog-popup__title">Product Not Found</h3>
+            <p class="catalog-popup__message">Sorry, no products match your current search criteria. Please try adjusting your filters or search terms.</p>
+            <button class="catalog-popup__button">Close</button>
+        </div>
+    </div>
+
+  <include src="./components/footer.html"></include>
+
+    <script type="module" src="/js/main.js"></script>
+</body>
+</html>
