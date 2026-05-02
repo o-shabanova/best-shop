@@ -330,7 +330,7 @@ class CartManager {
       const target = e.target as HTMLElement | null;
       if (target?.matches('.cart-actions__btn:first-child')) {
         e.preventDefault();
-        globalThis.location.href = '/pages/catalog.html';
+        globalThis.location.href = '/html/catalog.html';
       }
     });
 

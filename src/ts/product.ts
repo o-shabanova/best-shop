@@ -135,7 +135,7 @@ export class ProductDetailsManager {
       card.addEventListener('click', (event) => {
         const target = event.target as HTMLElement | null;
         if (target?.matches('[data-add-to-cart]')) return;
-        globalThis.location.href = `/pages/product-details-template?id=${p.id}`;
+        globalThis.location.href = `/html/product-details-template?id=${p.id}`;
       });
 
       grid.appendChild(card);

@@ -52,7 +52,7 @@ function setupGlobalCardNavigation() {
     const id = card.dataset.id;
     if (!id) return;
 
-    globalThis.location.href = `/pages/product-details-template?id=${id}`;
+    globalThis.location.href = `/html/product-details-template?id=${id}`;
   });
 }
 

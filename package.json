@@ -5,14 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "ts-compile": "npx tsc",
-    "start": "serve src -l 5173",
+    "start": "npm run build && npm run start:dist",
     "start:dist": "serve dist -l 5173",
     "build:css": "sass src/scss/main.scss dist/css/main.css --style=expanded --no-source-map",
     "watch:css": "sass --watch src/scss/main.scss:dist/css/main.css --style=expanded",
     "build:html": "node build-html.mjs",
-    "build": "npm run clean && npm run build:css && npm run build:html",
-    "clean": "rm -rf dist"
+    "build:ts": "tsc -p tsconfig.json --rewriteRelativeImportExtensions",
+    "watch:ts": "tsc -p tsconfig.json --rewriteRelativeImportExtensions --watch",
+    "build": "npm run clean && npm run build:css && npm run build:ts && npm run build:html",
+    "clean": "rimraf dist"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
   "devDependencies": {
     "posthtml": "^0.16.7",
     "posthtml-include": "^2.0.1",
+    "rimraf": "^6.1.3",
     "sass": "^1.99.0",
     "serve": "^14.2.6",
     "typescript": "^6.0.2"
