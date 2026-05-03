@@ -61,16 +61,14 @@ class CartManager {
       }
     }
 
-    if (!productData) {
-      productData = {
-        id: productId,
-        name: 'Product',
-        price: 0,
-        imageUrl: '/assets/product1.png',
-        color: 'unknown',
-        size: 'unknown',
-      };
-    }
+    productData ??= {
+      id: productId,
+      name: 'Product',
+      price: 0,
+      imageUrl: '/assets/product1.png',
+      color: 'unknown',
+      size: 'unknown',
+    };
 
     const color = productData.color || 'unknown';
     const size = productData.size || 'unknown';
