@@ -1,7 +1,46 @@
 @use '../abstracts/variables' as *;
 
-body { font-family: $font-secondary; }
-h1, h2, h3 { font-family: $font-primary; }
+@font-face {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../../assets/fonts/inter-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Inter;
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../../assets/fonts/inter-italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../../assets/fonts/montserrat-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Montserrat;
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../../assets/fonts/montserrat-italic.woff2') format('woff2');
+}
+
+body {
+  font-family: $font-secondary;
+}
+
+h1,
+h2,
+h3 {
+  font-family: $font-primary;
+}
 
 .account-form {
   font-family: $font-primary;
