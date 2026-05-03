@@ -158,7 +158,7 @@ class CartManager {
 
   private extractPrice(priceText: string) {
     if (!priceText) return 0;
-    const cleanPrice = priceText.replace(/[^0-9.]/g, '');
+    const cleanPrice = priceText.replaceAll(/[^0-9.]/g, '');
     const price = Number.parseFloat(cleanPrice);
     return Number.isNaN(price) ? 0 : price;
   }
