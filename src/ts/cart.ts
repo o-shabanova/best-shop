@@ -297,7 +297,7 @@ class CartManager {
       const target = e.target as HTMLElement | null;
       if (target?.matches('.cart-item__qty-btn--plus')) {
         e.preventDefault();
-        const productId = (target as HTMLElement).dataset.productId;
+        const productId = target.dataset.productId;
         const item = this.cart.find((i) => i.id === productId);
         if (item && productId) {
           this.updateItemQuantity(productId, item.quantity + 1);
@@ -306,7 +306,7 @@ class CartManager {
 
       if (target?.matches('.cart-item__qty-btn--minus')) {
         e.preventDefault();
-        const productId = (target as HTMLElement).dataset.productId;
+        const productId = target.dataset.productId;
         const item = this.cart.find((i) => i.id === productId);
         if (item && productId) {
           this.updateItemQuantity(productId, item.quantity - 1);
@@ -427,11 +427,11 @@ class CartManager {
   private showAddToCartFeedback(button: HTMLElement) {
     const originalText = button.textContent || '';
     button.textContent = 'Added!';
-    (button as HTMLElement).style.backgroundColor = '#28a745';
+    button.style.backgroundColor = '#28a745';
 
     setTimeout(() => {
       button.textContent = originalText;
-      (button as HTMLElement).style.backgroundColor = '';
+      button.style.backgroundColor = '';
     }, 1500);
   }
 }
