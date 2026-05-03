@@ -11,9 +11,13 @@
 html {
   font-size: 100%;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
+  overflow-x: hidden;
+  max-width: 100%;
   background-color: $color-white;
   font-family: $font-primary;
   font-size: $font-size-base;
@@ -26,6 +30,16 @@ body {
 
 img {
   display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+svg {
+  max-width: 100%;
+}
+
+video,
+iframe {
   max-width: 100%;
   height: auto;
 }
@@ -59,7 +73,3 @@ ul {
   white-space: nowrap;
 }
 
-// Main layout
-.main {
-  overflow-x: hidden;
-}
