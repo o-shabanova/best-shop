@@ -146,9 +146,7 @@ function setupGlobalCardNavigation() {
   });
 }
 
-declare global {
-  var contactFormValidator: ContactFormValidator | undefined;
-}
+let _contactFormValidator: ContactFormValidator | undefined;
 
 document.addEventListener('DOMContentLoaded', async () => {
   setupAccountLoginModal();
@@ -170,7 +168,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   if (document.querySelector('.contact-form__form')) {
-    globalThis.contactFormValidator = new ContactFormValidator();
+    _contactFormValidator = new ContactFormValidator();
   }
 
   if (document.querySelector('.product-details')) {
