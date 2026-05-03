@@ -38,9 +38,13 @@ $line-height-small: 1.2;
 $line-height-base: 1.47;
 $line-height-medium: 1.22;
 
-//screen sizes variables
+// screen sizes / layout breakpoints (use in @media (max-width: …))
+$container-max-width-xxs: rem(480);
+$container-max-width-520: rem(520);
 $container-max-width-xs: rem(576);
+$container-max-width-640: rem(640);
 $container-max-width-sm: rem(768);
+$container-max-width-900: rem(900);
 $container-max-width-md: rem(1024);
 $container-max-width-lg: rem(1200);
 $container-max-width-xl: rem(1440);

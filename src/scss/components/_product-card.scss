@@ -45,6 +45,10 @@
     &__name {        
         padding: 0 rem(50);
         font-family: $font-primary;
+
+        @media (max-width: $container-max-width-sm) {
+            padding: 0 rem(16);
+        }
         font-size: $font-size-xl;
         font-weight: $font-weight-bold;        
         line-height: $line-height-base;
@@ -109,4 +113,8 @@
     width: 55%;
     padding: rem(10) rem(25);
     font-size: $font-size-medium;
+
+    // @media (max-width: $container-max-width-640) {
+    //     width: min(100%, rem(280));
+    // }
 }

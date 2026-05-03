@@ -8,7 +8,31 @@
     margin-top: rem(60);
     margin-bottom: rem(60);
 
-    &__panel { display: flex; gap: rem(50); }
+    @media (max-width: $container-max-width-md) {
+        flex-wrap: wrap;
+        gap: rem(20);
+        margin-top: rem(40);
+        margin-bottom: rem(40);
+    }
+
+    @media (max-width: $container-max-width-640) {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    &__panel {
+        display: flex;
+        gap: rem(50);
+
+        @media (max-width: $container-max-width-md) {
+            gap: rem(24);
+        }
+
+        @media (max-width: $container-max-width-640) {
+            flex-direction: column;
+            width: 100%;
+        }
+    }
     &__results {
         font-family: $font-primary;
         font-size: $font-size-medium;
@@ -64,6 +88,10 @@
             padding: rem(10) rem(210) rem(10) rem(15);
             border: 2px solid $color-gray-light;
 
+            @media (max-width: $container-max-width-sm) {
+                padding-right: rem(56);
+            }
+
             &::-webkit-search-cancel-button {
                 display: none;
             }
@@ -111,11 +139,11 @@
     border-bottom: 2px solid $color-primary;
     border-top: 2px solid $color-primary;
 
-    @media (width <= 1024px) {
+    @media (max-width: $container-max-width-md) {
       grid-template-columns: repeat(2, 1fr);
     }
 
-    @media (width <= 640px) {
+    @media (max-width: $container-max-width-640) {
       grid-template-columns: 1fr;
     }
   }
@@ -214,6 +242,7 @@
 
   &__actions {
     display: flex;
+    flex-wrap: wrap;
     gap: rem(20);
   }
 
@@ -240,6 +269,7 @@
 
   @media (max-width: $container-max-width-md) {
     flex-direction: column;
+    gap: rem(32);
   }
 }
 
@@ -253,6 +283,16 @@
     grid-template-columns: repeat(3, 1fr);
     height: 100%;
     margin-bottom: rem(60);
+
+    @media (max-width: $container-max-width-md) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: rem(32) rem(11);
+    }
+
+    @media (max-width: $container-max-width-640) {
+      grid-template-columns: 1fr;
+      gap: rem(28);
+    }
   }
 }
 
@@ -350,9 +390,15 @@
 
 .catalog-pagination {
     display: flex;
+    flex-wrap: wrap;
     justify-content: end;
     gap: rem(24);
     margin-top: rem(60);
+
+    @media (max-width: $container-max-width-sm) {
+        justify-content: center;
+        margin-top: rem(40);
+    }
 
     &__button {
         padding: rem(13) rem(20);

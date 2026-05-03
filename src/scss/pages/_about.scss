@@ -243,7 +243,7 @@
 }
 
 
-@media (width <= 1200px) {
+@media (max-width: $container-max-width-lg) {
   .about-benefits__grid {
     gap: rem(30);
     grid-template-columns: repeat(2, 1fr);
@@ -254,7 +254,7 @@
   }
 }
 
-@media (width <= 768px) {
+@media (max-width: $container-max-width-sm) {
   .about-hero {
     height: rem(400);
     
@@ -288,7 +288,7 @@
   }
 }
 
-@media (width <= 480px) {
+@media (max-width: $container-max-width-xxs) {
   .about-hero {
     height: rem(300);
     

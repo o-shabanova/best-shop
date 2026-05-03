@@ -837,7 +837,7 @@
   }
 }
   
-@media (width <= 1200px) {
+@media (max-width: $container-max-width-lg) {
 .contact-form {
     row-gap: rem(24);
     grid-template-columns: 1fr;
@@ -858,7 +858,7 @@
   }
 }
 
-@media (width <= 768px) {
+@media (max-width: $container-max-width-sm) {
   .contact-hero {
     height: 400px;
 
@@ -900,7 +900,7 @@
   }
 }
 
-@media (width <= 480px) {
+@media (max-width: $container-max-width-xxs) {
   .contact-hero {
     height: 300px;
 

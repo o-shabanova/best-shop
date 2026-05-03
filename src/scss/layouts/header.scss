@@ -8,6 +8,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: rem(12);
+
+    // @media (max-width: $container-max-width-sm) {
+    //   flex-wrap: wrap;
+    //   row-gap: rem(16);
+    // }
   }
 
   &__social {
@@ -56,6 +62,10 @@
     font-weight: $font-weight-bold;
     line-height: $line-height-medium;
     color: $color-primary;
+
+    @media (max-width: $container-max-width-xs) {
+      display: none;
+    }
   }
 
   &__icons {
@@ -104,6 +114,15 @@
     justify-content: center;
     align-items: center;
     gap: rem(40);
+    flex-wrap: wrap;
+
+    @media (max-width: $container-max-width-md) {
+      gap: rem(20) rem(28);
+    }
+
+    @media (max-width: $container-max-width-xxs) {
+      gap: rem(12) rem(20);
+    }
   }
 
   &__menu-link {
@@ -116,6 +135,10 @@
     line-height: $line-height-medium;
     color: $color-black;
     transition: color 0.3s ease;
+
+    @media (max-width: $container-max-width-xxs) {
+      font-size: $font-size-base;
+    }
 
     &:hover {
       color: $color-primary;
