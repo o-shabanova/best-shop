@@ -247,25 +247,12 @@ class ReviewFormValidator extends FormValidator {
     super(config);
   }
 
-  protected async handleSubmit(event: Event) {
-    event.preventDefault();
-    if (!this.validateAllFields()) {
-      this.showSubmissionMessage('Please fix the errors above before submitting.', 'error');
-      return;
-    }
+  protected getSubmitSuccessMessage(): string {
+    return 'Thank you! Your review has been submitted successfully.';
+  }
 
-    this.setSubmitButtonState(true);
-
-    try {
-      const payload = this.getFormData();
-      await this.submitForm(payload);
-      this.showSubmissionMessage('Thank you! Your review has been submitted successfully.', 'success');
-      this.resetForm();
-    } catch {
-      this.showSubmissionMessage('Sorry, there was an error submitting your review. Please try again.', 'error');
-    } finally {
-      this.setSubmitButtonState(false);
-    }
+  protected getSubmitFailureMessage(): string {
+    return 'Sorry, there was an error submitting your review. Please try again.';
   }
 
   protected async submitForm(_formData?: unknown): Promise<unknown> {

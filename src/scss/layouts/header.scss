@@ -78,13 +78,17 @@
     color: $color-black;
     transition: color 0.3s ease;
 
-    &:hover {
-      color: $color-primary;
-    }
+    // &:hover {
+    //   color: $color-primary;
+    // }
 
     &__cart {
       position: relative;
       display: inline-block;
+      
+      &:hover {
+        color: $color-primary;
+      }
 
       &__counter {
         position: absolute;

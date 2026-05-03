@@ -77,6 +77,9 @@ export class FormValidator {
         minLength: 10,
         maxLength: 1000,
       },
+      password: {
+        required: true,
+      },
     };
   }
 
@@ -108,6 +111,10 @@ export class FormValidator {
         required: 'Review is required',
         minLength: 'Review must be at least 10 characters long',
         maxLength: 'Review must not exceed 1000 characters',
+        pattern: 'Invalid value',
+      },
+      password: {
+        required: 'Password is required',
         pattern: 'Invalid value',
       },
     };
@@ -226,11 +233,28 @@ export class FormValidator {
     return isValid;
   }
 
+  protected getInvalidFieldsMessage(): string {
+    return 'Please fix the errors above before submitting.';
+  }
+
+  protected getSubmitSuccessMessage(): string {
+    return 'Thank you! Your message has been sent successfully.';
+  }
+
+  protected getSubmitFailureMessage(): string {
+    return 'Sorry, there was an error sending your message. Please try again.';
+  }
+
+  protected async onSubmitCompleteSuccess(): Promise<void> {
+    this.showSubmissionMessage(this.getSubmitSuccessMessage(), 'success');
+    this.resetForm();
+  }
+
   protected async handleSubmit(event: Event) {
     event.preventDefault();
 
     if (!this.validateAllFields()) {
-      this.showSubmissionMessage('Please fix the errors above before submitting.', 'error');
+      this.showSubmissionMessage(this.getInvalidFieldsMessage(), 'error');
       return;
     }
 
@@ -239,11 +263,10 @@ export class FormValidator {
     try {
       const formData = this.getFormData();
       await this.submitForm(formData);
-      this.showSubmissionMessage('Thank you! Your message has been sent successfully.', 'success');
-      this.resetForm();
+      await this.onSubmitCompleteSuccess();
     } catch (error) {
       console.error('Form submission error:', error);
-      this.showSubmissionMessage('Sorry, there was an error sending your message. Please try again.', 'error');
+      this.showSubmissionMessage(this.getSubmitFailureMessage(), 'error');
     } finally {
       this.setSubmitButtonState(false);
     }
@@ -313,6 +336,80 @@ export class FormValidator {
     this.form?.reset();
     for (const fieldName of Object.keys(this.fields)) {
       this.clearError(fieldName);
+    }
+  }
+}
+
+export class LoginFormValidator extends FormValidator {
+  constructor(private readonly closeModal: () => void) {
+    super({
+      form: document.querySelector<HTMLFormElement>('#login-form'),
+      submitButton: document.querySelector<HTMLButtonElement>('#login-form .account-form__submit'),
+      fields: {
+        email: document.querySelector<HTMLInputElement>('#login-email'),
+        password: document.querySelector<HTMLInputElement>('#login-password'),
+      },
+      formClassPrefix: 'account-form',
+    });
+    this.attachPasswordToggle();
+  }
+
+  clearModalForm(): void {
+    this.resetForm();
+    const form = this.form;
+    if (!form) return;
+    const input = form.querySelector<HTMLInputElement>('#login-password');
+    const toggle = form.querySelector<HTMLButtonElement>('.account-form__toggle-password');
+    const eyeOpen = form.querySelector<HTMLElement>('.account-form__eye--open');
+    const eyeClosed = form.querySelector<HTMLElement>('.account-form__eye--closed');
+    if (input) input.type = 'password';
+    if (toggle) {
+      toggle.setAttribute('aria-pressed', 'false');
+      toggle.setAttribute('aria-label', 'Show password');
+    }
+    if (eyeOpen) eyeOpen.hidden = false;
+    if (eyeClosed) eyeClosed.hidden = true;
+  }
+
+  private attachPasswordToggle() {
+    const form = this.form;
+    if (!form) return;
+    const toggle = form.querySelector<HTMLButtonElement>('.account-form__toggle-password');
+    const input = form.querySelector<HTMLInputElement>('#login-password');
+    const eyeOpen = form.querySelector<HTMLElement>('.account-form__eye--open');
+    const eyeClosed = form.querySelector<HTMLElement>('.account-form__eye--closed');
+    if (!toggle || !input) return;
+
+    const syncIcon = () => {
+      const hidden = input.type === 'password';
+      toggle.setAttribute('aria-pressed', hidden ? 'false' : 'true');
+      toggle.setAttribute('aria-label', hidden ? 'Show password' : 'Hide password');
+      if (eyeOpen) eyeOpen.hidden = !hidden;
+      if (eyeClosed) eyeClosed.hidden = hidden;
+    };
+
+    syncIcon();
+
+    toggle.addEventListener('click', () => {
+      input.type = input.type === 'password' ? 'text' : 'password';
+      syncIcon();
+    });
+  }
+
+  protected async onSubmitCompleteSuccess(): Promise<void> {
+    this.closeModal();
+  }
+
+  protected setSubmitButtonState(isLoading: boolean) {
+    if (!this.submitButton) return;
+    if (isLoading) {
+      this.submitButton.disabled = true;
+      this.submitButton.textContent = 'SIGNING IN...';
+      this.submitButton.classList.add('account-form__submit--loading');
+    } else {
+      this.submitButton.disabled = false;
+      this.submitButton.textContent = 'LOG IN';
+      this.submitButton.classList.remove('account-form__submit--loading');
     }
   }
 }
