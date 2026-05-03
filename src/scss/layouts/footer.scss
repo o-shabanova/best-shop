@@ -287,21 +287,16 @@
     }
 
     .footer-benefits {
-    //   flex-direction: column;
-    //   gap: $spacing-lg;
+      flex-direction: column;
+      gap: $spacing-lg;
 
       &__item {
         max-width: 100%;
       }
     }
 
-    // .footer-links {
-    //   flex-direction: column;
-    //   gap: $spacing-lg;
-    // }
-
-    // .footer-bottom__right {
-    //     flex-direction: row;
-    // }
+    .footer-bottom__right {
+        flex-direction: row;
+    }
   }
 }
