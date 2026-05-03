@@ -73,7 +73,7 @@ class CartManager {
     const color = productData.color || 'unknown';
     const size = productData.size || 'unknown';
 
-    const existingItem = this.cart.find((item) => item.name === productData!.name && item.size === size && item.color === color);
+    const existingItem = this.cart.find((item) => item.name === productData.name && item.size === size && item.color === color);
 
     if (existingItem) {
       existingItem.quantity += quantity;
