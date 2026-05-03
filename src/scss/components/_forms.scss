@@ -121,8 +121,8 @@
         gap: rem(5);
 
         svg {
-            width: 16px;
-            height: 15px;
+            width: rem(16);
+            height: rem(15);
         }
     }
 
@@ -160,14 +160,14 @@
         margin-bottom: rem(35);
 
         .review-form__name, .review-form__email {
-            padding: 10px 15px;
+            padding: rem(10) rem(15);
         }
     }
   
     &__remember {
         display: flex;
         align-items: center;
-        gap: 15px;
+        gap: rem(15);
         margin-bottom: rem(30);
         font-family: $font-primary;
         font-size: rem(13);
@@ -178,7 +178,7 @@
   
     &__submit {
         align-self: flex-start;
-        padding: 12px 22px;
+        padding: rem(12) rem(22);
         font-family: $font-primary;
         font-size: rem(12);
         font-weight: $font-weight-bold;
