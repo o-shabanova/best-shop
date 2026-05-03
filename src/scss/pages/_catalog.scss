@@ -236,6 +236,10 @@
 .catalog-layout {
   display: flex;
   gap: 50px;
+
+  @media (max-width: $container-max-width-md) {
+    flex-direction: column;
+  }
 }
 
 .catalog-products {
@@ -254,6 +258,12 @@
 .catalog-sidebar {
   flex: 0 0 339px;
   max-width: 339px;
+
+  @media (max-width: $container-max-width-md) {
+    flex: 1 1 auto;
+    align-self: stretch;
+    max-width: none;
+  }
 }
 
 
