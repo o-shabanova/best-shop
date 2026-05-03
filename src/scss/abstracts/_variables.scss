@@ -38,7 +38,12 @@ $line-height-small: 1.2;
 $line-height-base: 1.47;
 $line-height-medium: 1.22;
 
-$container-max-width: rem(1300);
+//screen sizes variables
+$container-max-width-xs: rem(576);
+$container-max-width-sm: rem(768);
+$container-max-width-md: rem(1024);
+$container-max-width-lg: rem(1200);
+$container-max-width-xl: rem(1440);
 
 $section-pad-inline: rem(24);
 

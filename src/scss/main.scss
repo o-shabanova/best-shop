@@ -24,8 +24,23 @@
 
 .container {
     width: 100%;
-    max-width: 1300px;
+    max-width: 1440px;
     margin-inline: auto;
+    @media (max-width: $container-max-width-lg) {
+        max-width: rem(1024);
+    }
+
+    @media (max-width: $container-max-width-md) {
+        max-width: rem(768);
+    }
+
+    @media (max-width: $container-max-width-sm) {
+        max-width: rem(576);
+    }
+
+    @media (max-width: $container-max-width-xs) {
+        max-width: rem(320);
+    }
   }
 
 
