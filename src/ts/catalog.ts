@@ -175,10 +175,10 @@ class CatalogManager {
 
     if (!selectedIsRange && !selectedIsSet) {
       if (productIsRange) {
-        return RANGE_S_TO_L.indexOf(selectedSize) !== -1;
+        return RANGE_S_TO_L.includes(selectedSize);
       }
       if (productIsSet) {
-        return normalize('S, M, XL').indexOf(selectedSize) !== -1;
+        return normalize('S, M, XL').includes(selectedSize);
       }
       return productSize === selectedSize;
     }
@@ -449,12 +449,19 @@ function setupEventListeners(catalog: CatalogManager) {
   nextButton?.addEventListener('click', () => void catalog.goToNextPage());
 }
 
+function formFieldString(entry: FormDataEntryValue | null): string {
+  if (entry == null) {
+    return '';
+  }
+  return typeof entry === 'string' ? entry : '';
+}
+
 function applyFiltersFromForm(filterForm: HTMLFormElement, catalog: CatalogManager) {
   const formData = new FormData(filterForm);
   const filters: Filters = {
-    size: String(formData.get('size') || ''),
-    color: String(formData.get('color') || ''),
-    category: String(formData.get('category') || ''),
+    size: formFieldString(formData.get('size')),
+    color: formFieldString(formData.get('color')),
+    category: formFieldString(formData.get('category')),
     sales: formData.has('sales'),
   };
   void catalog.filterProducts(filters);

@@ -235,7 +235,7 @@ class ReviewFormValidator extends FormValidator {
     const form = document.getElementById('review-form') as HTMLFormElement | null;
     const config = {
       form,
-      submitButton: (form ? form.querySelector('.review-form__submit') : null) as HTMLButtonElement | null,
+      submitButton: form ? form.querySelector<HTMLButtonElement>('.review-form__submit') : null,
       fields: {
         name: document.getElementById('review-form__name') as HTMLInputElement | null,
         email: document.getElementById('review-form__email') as HTMLInputElement | null,

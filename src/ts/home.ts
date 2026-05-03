@@ -18,7 +18,7 @@ async function renderProductsByBlock(gridId: string, blockName: string) {
 
   const data = await loadJSON('/assets/data.json');
   const products: Product[] = (data.data || []).filter(
-    (p) => Array.isArray(p.blocks) && p.blocks.indexOf(blockName) !== -1,
+    (p) => Array.isArray(p.blocks) && p.blocks.includes(blockName),
   );
 
   const tpl = await loadProductCardTemplate('/components/product-card.html');
@@ -147,10 +147,7 @@ function setupGlobalCardNavigation() {
 }
 
 declare global {
-  interface Window {
-    contactFormValidator?: ContactFormValidator;
-    reviewFormValidator?: unknown;
-  }
+  var contactFormValidator: ContactFormValidator | undefined;
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -173,7 +170,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   if (document.querySelector('.contact-form__form')) {
-    window.contactFormValidator = new ContactFormValidator();
+    globalThis.contactFormValidator = new ContactFormValidator();
   }
 
   if (document.querySelector('.product-details')) {
