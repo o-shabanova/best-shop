@@ -9,11 +9,6 @@
     justify-content: space-between;
     align-items: center;
     gap: rem(12);
-
-    // @media (max-width: $container-max-width-sm) {
-    //   flex-wrap: wrap;
-    //   row-gap: rem(16);
-    // }
   }
 
   &__social {
@@ -33,6 +28,10 @@
     svg {
       width: rem(20);
       height: rem(20);
+    }
+
+    svg path {
+      fill: currentColor;
     }
   }
 
@@ -74,38 +73,54 @@
     gap: rem(15);
   }
 
-  &__icon {
+  &__icon__login {
+    padding: 0;
     color: $color-black;
+    cursor: pointer;
+    background: none;
+    border: none;
     transition: color 0.3s ease;
 
-    // &:hover {
-    //   color: $color-primary;
-    // }
-
-    &__cart {
-      position: relative;
-      display: inline-block;
-      
-      &:hover {
-        color: $color-primary;
-      }
-
-      &__counter {
-        position: absolute;
-        top: -0.6rem;
-        right: -0.5rem;
-        z-index: 10;
-        display: none;
-        
-        &:not(:empty) {
-          display: block;
-        }
-      }
+    &:hover {
+      color: $color-primary;
     }
 
     svg {
+      display: block;
       width: rem(30);
       height: rem(33);
+    }
+  }
+
+  &__icon__cart {
+    position: relative;
+    display: inline-block;
+    color: $color-black;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $color-primary;
+    }
+
+    > svg:first-of-type path {
+      fill: currentColor;
+    }
+
+    > svg:first-of-type {
+      width: rem(34);
+      height: rem(33);
+    }
+
+    &__counter {
+      position: absolute;
+      top: -0.6rem;
+      right: -0.5rem;
+      z-index: 10;
+      display: none;
+
+      &:not(:empty) {
+        display: block;
+      }
     }
   }
 
