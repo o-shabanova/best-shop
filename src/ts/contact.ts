@@ -6,10 +6,10 @@ export class ContactFormValidator extends FormValidator {
       form: document.querySelector<HTMLFormElement>('.contact-form__form'),
       submitButton: document.querySelector<HTMLButtonElement>('.contact-form__submit'),
       fields: {
-        name: document.getElementById('name') as HTMLInputElement | null,
-        email: document.getElementById('email') as HTMLInputElement | null,
-        topic: document.getElementById('topic') as HTMLInputElement | null,
-        message: document.getElementById('message') as HTMLTextAreaElement | null,
+        name: document.querySelector<HTMLInputElement>('#name'),
+        email: document.querySelector<HTMLInputElement>('#email'),
+        topic: document.querySelector<HTMLInputElement>('#topic'),
+        message: document.querySelector<HTMLTextAreaElement>('#message'),
       },
       formClassPrefix: 'contact-form',
     };

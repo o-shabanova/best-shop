@@ -38,7 +38,7 @@ class CatalogManager {
     }
     const data = (await response.json()) as CatalogData;
     this.products = Array.isArray(data.data) ? data.data : [];
-    this.topBestSets = data.topBestSets || [];
+    this.topBestSets = data.topBestSets ?? [];
     this.filteredProducts = [...this.products];
 
     if (this.products.length === 0) {
@@ -153,7 +153,7 @@ class CatalogManager {
   async filterProducts(filters: Filters) {
     this.filteredProducts = this.products.filter((product) => {
       return (
-        (!filters.size || this.matchesSize(filters.size, product.size || '')) &&
+        (!filters.size || this.matchesSize(filters.size, product.size ?? '')) &&
         (!filters.color || product.color === filters.color) &&
         (!filters.category || product.category === filters.category) &&
         (!filters.sales || Boolean(product.salesStatus))
@@ -196,10 +196,10 @@ class CatalogManager {
 
   async sortProducts(sortType: string) {
     const sortMethods: Record<string, (a: Product, b: Product) => number> = {
-      'price-asc': (a, b) => (a.price || 0) - (b.price || 0),
-      'price-desc': (a, b) => (b.price || 0) - (a.price || 0),
-      popularity: (a, b) => (b.popularity || 0) - (a.popularity || 0),
-      rating: (a, b) => (b.rating || 0) - (a.rating || 0),
+      'price-asc': (a, b) => (a.price ?? 0) - (b.price ?? 0),
+      'price-desc': (a, b) => (b.price ?? 0) - (a.price ?? 0),
+      popularity: (a, b) => (b.popularity ?? 0) - (a.popularity ?? 0),
+      rating: (a, b) => (b.rating ?? 0) - (a.rating ?? 0),
     };
 
     if (sortMethods[sortType]) {
@@ -349,7 +349,7 @@ export async function initializeCatalog() {
 }
 
 function setupEventListeners(catalog: CatalogManager) {
-  const filterForm = document.getElementById('catalog-filters-form') as HTMLFormElement | null;
+  const filterForm = document.querySelector<HTMLFormElement>('#catalog-filters-form');
   if (filterForm) {
     const closeAll = () => {
       for (const el of filterForm.querySelectorAll<HTMLElement>('.catalog-filters__select.open')) {
@@ -361,7 +361,7 @@ function setupEventListeners(catalog: CatalogManager) {
       const display = custom.querySelector<HTMLElement>('.catalog-filters__select-display');
       const optionsList = custom.querySelector<HTMLElement>('.catalog-filters__select-options');
       const targetName = custom.dataset.target;
-      const hiddenSelect = targetName ? (filterForm.querySelector(`select[name="${targetName}"]`) as HTMLSelectElement | null) : null;
+      const hiddenSelect = targetName ? filterForm.querySelector<HTMLSelectElement>(`select[name="${targetName}"]`) : null;
 
       display?.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -370,10 +370,10 @@ function setupEventListeners(catalog: CatalogManager) {
         if (!isOpen) custom.classList.add('open');
       });
 
-      for (const li of optionsList?.querySelectorAll<HTMLLIElement>('li') || []) {
+      for (const li of optionsList?.querySelectorAll<HTMLLIElement>('li') ?? []) {
         li.addEventListener('click', () => {
-          const value = li.dataset.value || '';
-          const label = li.textContent || 'Choose option';
+          const value = li.dataset.value ?? '';
+          const label = li.textContent ?? 'Choose option';
           if (hiddenSelect && display) {
             hiddenSelect.value = value;
             display.textContent = label;
@@ -423,11 +423,10 @@ function setupEventListeners(catalog: CatalogManager) {
     }
   }
 
-  const sortSelect = document.getElementById('sort') as HTMLSelectElement | null;
+  const sortSelect = document.querySelector<HTMLSelectElement>('#sort');
   if (sortSelect) {
-    sortSelect.addEventListener('change', (e) => {
-      const target = e.target as HTMLSelectElement;
-      void catalog.sortProducts(target.value);
+    sortSelect.addEventListener('change', () => {
+      void catalog.sortProducts(sortSelect.value);
     });
   }
 

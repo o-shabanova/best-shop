@@ -38,8 +38,9 @@ export function renderProductCard(
   });
 
   applyIf('.product-card__badge', (el) => {
+    if (!(el instanceof HTMLElement)) return;
     el.textContent = product.salesStatus ? 'SALE' : '';
-    (el as HTMLElement).style.display = product.salesStatus ? '' : 'none';
+    el.style.display = product.salesStatus ? '' : 'none';
   });
 
   applyIf('.product-card__name', (el) => {

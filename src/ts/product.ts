@@ -13,7 +13,7 @@ export class ProductDetailsManager {
 
     await this.loadAndRenderProduct(productId);
 
-    (globalThis as unknown as { reviewFormValidator?: ReviewFormValidator }).reviewFormValidator = new ReviewFormValidator();
+    _reviewFormValidatorInstance = new ReviewFormValidator();
   }
 
   private getProductIdFromUrl() {
@@ -45,12 +45,12 @@ export class ProductDetailsManager {
   private renderProduct(product: Product, allProducts: Product[]) {
     const titleEl = document.querySelector<HTMLElement>('.product-details__title');
     const priceEl = document.querySelector<HTMLElement>('.product-details__price');
-    const imageEl = document.getElementById('product-details__photo') as HTMLImageElement | null;
+    const imageEl = document.querySelector<HTMLImageElement>('#product-details__photo');
     const addToCartBtn = document.querySelector<HTMLElement>('.product-details__add-to-cart');
-    const sizeSelect = document.getElementById('size') as HTMLSelectElement | null;
-    const colorSelect = document.getElementById('color') as HTMLSelectElement | null;
-    const categorySelect = document.getElementById('category') as HTMLSelectElement | null;
-    const qtyInput = document.getElementById('product-details__quantity') as HTMLInputElement | null;
+    const sizeSelect = document.querySelector<HTMLSelectElement>('#size');
+    const colorSelect = document.querySelector<HTMLSelectElement>('#color');
+    const categorySelect = document.querySelector<HTMLSelectElement>('#category');
+    const qtyInput = document.querySelector<HTMLInputElement>('#product-details__quantity');
 
     if (titleEl) titleEl.textContent = product.name;
     if (priceEl) priceEl.textContent = `$${product.price}`;
@@ -144,7 +144,7 @@ export class ProductDetailsManager {
 
   private bindQuantityControls() {
     const container = document.querySelector<HTMLElement>('.product-details__quantity-controls');
-    const qtyInput = document.getElementById('product-details__quantity') as HTMLInputElement | null;
+    const qtyInput = document.querySelector<HTMLInputElement>('#product-details__quantity');
     const addToCartBtn = document.querySelector<HTMLElement>('.product-details__add-to-cart');
     if (!container || !qtyInput) return;
 
@@ -165,7 +165,7 @@ export class ProductDetailsManager {
       if (!btn) return;
       e.preventDefault();
 
-      const label = (btn.textContent || '').trim();
+      const label = (btn.textContent ?? '').trim();
       const isMinus = label === '-' || label === '−';
       const isPlus = label === '+';
 
@@ -232,14 +232,14 @@ export class ProductDetailsManager {
 
 class ReviewFormValidator extends FormValidator {
   constructor() {
-    const form = document.getElementById('review-form') as HTMLFormElement | null;
+    const form = document.querySelector<HTMLFormElement>('#review-form');
     const config = {
       form,
       submitButton: form ? form.querySelector<HTMLButtonElement>('.review-form__submit') : null,
       fields: {
-        name: document.getElementById('review-form__name') as HTMLInputElement | null,
-        email: document.getElementById('review-form__email') as HTMLInputElement | null,
-        review: document.getElementById('review-form__text') as HTMLTextAreaElement | null,
+        name: document.querySelector<HTMLInputElement>('#review-form__name'),
+        email: document.querySelector<HTMLInputElement>('#review-form__email'),
+        review: document.querySelector<HTMLTextAreaElement>('#review-form__text'),
       },
       formClassPrefix: 'review-form',
     };
@@ -276,4 +276,6 @@ class ReviewFormValidator extends FormValidator {
     }
   }
 }
+
+let _reviewFormValidatorInstance: ReviewFormValidator | undefined;
 

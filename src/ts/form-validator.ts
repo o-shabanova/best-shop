@@ -43,9 +43,9 @@ export class FormValidator {
     this.form = config.form;
     this.submitButton = config.submitButton;
     this.fields = config.fields;
-    this.formClassPrefix = config.formClassPrefix || 'form';
-    this.validationRules = this.mergeValidationRules(config.validationRules as DefaultValidationRules | undefined);
-    this.errorMessages = this.mergeErrorMessages(config.errorMessages as DefaultErrorMessages | undefined);
+    this.formClassPrefix = config.formClassPrefix ?? 'form';
+    this.validationRules = this.mergeValidationRules(config.validationRules as Partial<DefaultValidationRules> | undefined);
+    this.errorMessages = this.mergeErrorMessages(config.errorMessages as Partial<DefaultErrorMessages> | undefined);
 
     this.init();
   }
@@ -120,23 +120,25 @@ export class FormValidator {
     };
   }
 
-  protected mergeValidationRules(customRules: DefaultValidationRules = {}): DefaultValidationRules {
+  protected mergeValidationRules(customRules?: Partial<DefaultValidationRules>): DefaultValidationRules {
     const defaults = this.getDefaultValidationRules();
     const merged: DefaultValidationRules = { ...defaults };
+    const source = customRules ?? {};
 
-    for (const fieldName of Object.keys(customRules)) {
-      merged[fieldName] = { ...merged[fieldName], ...customRules[fieldName] };
+    for (const fieldName of Object.keys(source)) {
+      merged[fieldName] = { ...merged[fieldName], ...source[fieldName] };
     }
 
     return merged;
   }
 
-  protected mergeErrorMessages(customMessages: DefaultErrorMessages = {}): DefaultErrorMessages {
+  protected mergeErrorMessages(customMessages?: Partial<DefaultErrorMessages>): DefaultErrorMessages {
     const defaults = this.getDefaultErrorMessages();
     const merged: DefaultErrorMessages = { ...defaults };
+    const source = customMessages ?? {};
 
-    for (const fieldName of Object.keys(customMessages)) {
-      merged[fieldName] = { ...merged[fieldName], ...customMessages[fieldName] };
+    for (const fieldName of Object.keys(source)) {
+      merged[fieldName] = { ...merged[fieldName], ...source[fieldName] };
     }
 
     return merged;
@@ -163,7 +165,7 @@ export class FormValidator {
   }
 
   protected getErrorElement(field: FieldEl | null, fieldName: string): HTMLElement | null {
-    const specific = this.form?.querySelector<HTMLElement>(`.${this.formClassPrefix}__error--${fieldName}`) || null;
+    const specific = this.form?.querySelector<HTMLElement>(`.${this.formClassPrefix}__error--${fieldName}`) ?? null;
     if (specific) return specific;
 
     const next = field?.nextElementSibling;
@@ -171,7 +173,7 @@ export class FormValidator {
       return next;
     }
 
-    return this.form?.querySelector<HTMLElement>(`.${this.formClassPrefix}__error`) || null;
+    return this.form?.querySelector<HTMLElement>(`.${this.formClassPrefix}__error`) ?? null;
   }
 
   protected validateField(fieldName: string): boolean {
@@ -180,7 +182,7 @@ export class FormValidator {
     if (!field || !rules) return true;
 
     const raw = 'value' in field ? field.value : '';
-    const value = (raw || '').trim();
+    const value = (raw ?? '').trim();
     const errorElement = this.getErrorElement(field, fieldName);
 
     const show = (msg: string) => {
@@ -193,19 +195,19 @@ export class FormValidator {
 
     const messages = this.errorMessages[fieldName];
     if (rules.required && !value) {
-      show(messages?.required || 'Required');
+      show(messages?.required ?? 'Required');
       return false;
     }
     if (value && rules.minLength && value.length < rules.minLength) {
-      show(messages?.minLength || 'Too short');
+      show(messages?.minLength ?? 'Too short');
       return false;
     }
     if (value && rules.maxLength && value.length > rules.maxLength) {
-      show(messages?.maxLength || 'Too long');
+      show(messages?.maxLength ?? 'Too long');
       return false;
     }
     if (value && rules.pattern && !rules.pattern.test(value)) {
-      show(messages?.pattern || 'Invalid');
+      show(messages?.pattern ?? 'Invalid');
       return false;
     }
 
@@ -277,7 +279,7 @@ export class FormValidator {
     for (const fieldName of Object.keys(this.fields)) {
       const field = this.fields[fieldName];
       const v = field && 'value' in field ? field.value : '';
-      data[fieldName] = (v || '').trim();
+      data[fieldName] = (v ?? '').trim();
     }
     return { ...data, timestamp: new Date().toISOString() };
   }

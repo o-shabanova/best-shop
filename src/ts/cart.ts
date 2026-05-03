@@ -53,9 +53,9 @@ class CartManager {
 
         productData = {
           id: productId,
-          name: nameElement?.textContent?.trim() || 'Product',
-          price: this.extractPrice(priceElement?.textContent || '0'),
-          imageUrl: imageElement?.src || '/assets/product1.png',
+          name: nameElement?.textContent?.trim() ?? 'Product',
+          price: this.extractPrice(priceElement?.textContent ?? '0'),
+          imageUrl: imageElement?.src ?? '/assets/product1.png',
         };
         console.log('Extracted product data from DOM:', productData);
       }
@@ -70,8 +70,8 @@ class CartManager {
       size: 'unknown',
     };
 
-    const color = productData.color || 'unknown';
-    const size = productData.size || 'unknown';
+    const color = productData.color ?? 'unknown';
+    const size = productData.size ?? 'unknown';
 
     const existingItem = this.cart.find((item) => item.name === productData.name && item.size === size && item.color === color);
 
@@ -273,7 +273,8 @@ class CartManager {
       if (!addBtn) return;
       e.preventDefault();
       const productId = addBtn.dataset.productId;
-      const quantity = Number.parseInt(addBtn.dataset.quantity || '1', 10) || 1;
+      const parsedQty = Number.parseInt(addBtn.dataset.quantity ?? '1', 10);
+      const quantity = Number.isNaN(parsedQty) || parsedQty < 1 ? 1 : parsedQty;
 
       if (productId) {
         this.addItem(productId, quantity);
@@ -425,7 +426,7 @@ class CartManager {
   }
 
   private showAddToCartFeedback(button: HTMLElement) {
-    const originalText = button.textContent || '';
+    const originalText = button.textContent ?? '';
     button.textContent = 'Added!';
     button.style.backgroundColor = '#28a745';
 
